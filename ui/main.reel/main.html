@@ -2,21 +2,91 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Main</title>
-
+    <title>
+        Main
+    </title>
     <link rel="stylesheet" href="main.css">
-
     <script type="text/montage-serialization">
-        {
-            "owner": {
-                "properties": {
-                    "element": {"#": "main"}
+    {
+        "owner": {
+            "properties": {
+                "element": {"#": "main"},
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true"
+            }
+        },
+        "actionEventListener": {
+            "prototype": "montage/core/event/action-event-listener",
+            "properties": {
+                "action": "schijf je content",
+                "handler": {"@": "rangeController"}
+            },
+            "_dev": {
+                "isHidden": true
+            }
+        },
+        "button": {
+            "prototype": "digit/ui/button.reel",
+            "properties": {
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true",
+                "enabled": true,
+                "label": "Nieuwe taak"
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "actionEventListener"}
                 }
+            ]
+        },
+        "list": {
+            "prototype": "digit/ui/list.reel",
+            "properties": {
+                "contentController": {"@": "rangeController"},
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true"
+            },
+            "_dev": {
+                "isHidden": true
+            }
+        },
+        "rangeController": {
+            "prototype": "montage/core/range-controller"
+        },
+        "text": {
+            "prototype": "montage/ui/text.reel",
+            "properties": {
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true",
+                "value": "Woning configurator"
+            }
+        },
+        "title": {
+            "prototype": "digit/ui/title.reel",
+            "properties": {
+                "element": {"#": "title"},
+                "contenteditable": "true",
+                "dir": "ltr",
+                "draggable": "true",
+                "value": "to do"
             }
         }
+    }
     </script>
 </head>
 <body>
-    <div data-montage-id="main" data-montage-skin="light" class="Main"></div>
+    <div data-montage-id="main" data-montage-skin="light" class="Main">
+        <h1 data-montage-id="title"></h1>
+        @list
+        <button data-montage-id="button"></button>
+        <ul data-montage-id="list">
+            <li></li>
+        </ul>
+    </div>
 </body>
 </html>
